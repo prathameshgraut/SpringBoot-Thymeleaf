@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Register | MyBank App</title>
+  <style>
+    body {
+      background-image: url('bank.jpg'); /* ✅ Use correct relative path */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    .container {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+      width: 350px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #00e6e6;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 6px;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #00cc99;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #009973;
+    }
+
+    .links {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .links a {
+      color: #ffffff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    .msg {
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .success { color: lightgreen; }
+    .error { color: #ff6666; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Register Page</h2>
+
+    <div th:if="${successmsg}" class="msg success" th:text="${successmsg}"></div>
+    <div th:if="${errormsg}" class="msg error" th:text="${errormsg}"></div>
+
+    <form th:action="@{/regForm}" th:object="${bank}" method="post">
+      <input type="text" th:field="*{name}" placeholder="Full Name">
+      <input type="text" th:field="*{email}" placeholder="Email ID">
+      <input type="password" th:field="*{password}" placeholder="Password">
+      <input type="text" th:field="*{phoneno}" placeholder="Phone Number">
+      <input type="submit" value="Register">
+    </form>
+
+    <div class="links">
+      <a href="loginForm">Login Page</a> |
+      <a href="index.html">Home Page</a>
+    </div>
+  </div>
+
+</body>
+</html>
